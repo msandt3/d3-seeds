@@ -71,6 +71,16 @@ function draw(data){
     svg.selectAll(".dot")
         .data(data)
       .enter().append("circle")
+        .on('click',function(d){
+            console.log(d);
+            string = "Asymmetry Coefficient: " + d.asymmetryCoefficient + "\n" +
+            "Compactness: " + d.compactness + "\n" +
+            "Groove Length" + d.grooveLength + "\n" +
+            "Kernel Length: " + d.kernelLength + "\n" +
+            "Kernel Width: " + d.kernelWidth + "\n" +
+            "Variety: " + d.variety;
+            showDetails(string);
+        })
         .attr("class", "dot")
         .attr("r", 3.5)
         .attr("cx", function(d){
@@ -108,8 +118,6 @@ function init(xAxis, yAxis){
     yLabel = yAxis;
     
     d3.csv("data/data.csv", text, function(error, data) {
-        console.log(error);
-        console.log(data);
         data = data;
         draw(data);
     });
@@ -123,10 +131,14 @@ x axis changes. It is passed the variable name that has been selected, such as
 **/
 function onXAxisChange(value){
     d3.select('svg').remove();
+
+    xLabel = value;
+    d3.csv("data/data.csv", text, function(error, data) {
+        data = data;
+        draw(data);
+    });
     
-    draw(data);
-    
-    x.domain(d3.extent(data, function(d) { return d[value]; })).nice();
+    // x.domain(d3.extent(data, function(d) { console.log(d[value]); return d[value]; })).nice();
     
 }
 
@@ -140,6 +152,13 @@ accordingly.
 **/
 function onYAxisChange(value){
 
+    d3.select('svg').remove();
+
+    yLabel = value;
+    d3.csv("data/data.csv", text, function(error, data) {
+        data = data;
+        draw(data);
+    });
 }
 
 /**
