@@ -73,12 +73,12 @@ function draw(data){
       .enter().append("circle")
         .on('click',function(d){
             console.log(d);
-            string = "Asymmetry Coefficient: " + d.asymmetryCoefficient + "\n" +
-            "Compactness: " + d.compactness + "\n" +
-            "Groove Length" + d.grooveLength + "\n" +
-            "Kernel Length: " + d.kernelLength + "\n" +
-            "Kernel Width: " + d.kernelWidth + "\n" +
-            "Variety: " + d.variety;
+            string = "Asymmetry Coefficient: " + d.asymmetryCoefficient + "<br />" +
+            "Compactness: " + d.compactness + "<br />" +
+            "Groove Length" + d.grooveLength + "<br />" +
+            "Kernel Length: " + d.kernelLength + "<br />" +
+            "Kernel Width: " + d.kernelWidth + "<br />" +
+            "Variety: " + d.variety + "<br />";
             showDetails(string);
         })
         .attr("class", "dot")
