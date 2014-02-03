@@ -71,15 +71,18 @@ function draw(data){
     svg.selectAll(".dot")
         .data(data)
       .enter().append("circle")
-        .on('click',function(d){
+        .on('mouseover',function(d){
             console.log(d);
             string = "Asymmetry Coefficient: " + d.asymmetryCoefficient + "<br />" +
             "Compactness: " + d.compactness + "<br />" +
-            "Groove Length" + d.grooveLength + "<br />" +
+            "Groove Length: " + d.grooveLength + "<br />" +
             "Kernel Length: " + d.kernelLength + "<br />" +
             "Kernel Width: " + d.kernelWidth + "<br />" +
             "Variety: " + d.variety + "<br />";
             showDetails(string);
+        })
+        .on('mouseout',function(d){
+            showDetails('');
         })
         .attr("class", "dot")
         .attr("r", 3.5)
